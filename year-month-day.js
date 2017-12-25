@@ -68,12 +68,16 @@ $("#day").change(function(){
     if(old<18&&old>=0){//如果不满18周岁
         $(".modal-body").text("您不满18周岁，是否继续进行注册？");//设置提示窗信息
         $("#ageModal").modal("show");//弹出提示窗
+        $("#ageYes").click(function(){
+            count++;
+        })
     }else if(old<0){//如果出生日期超过当前日期
         $(".modal-body").text("您选择的出生日期有误，请重新选择");//设置提示窗信息
         $("#ageModal").modal("show");//弹出提示窗
     }else{//年满十八周岁
         $(".modal-body").text("您今年"+old+"岁，可以继续注册");//设置提示窗信息
         $("#ageModal").modal("show");//弹出提示窗
+        count++;
     }
 });
 

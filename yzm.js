@@ -58,6 +58,7 @@
      */
     function yzmpd(){
         if($("#test").text()==$("#yzm").text()){
+            count++;
             return true;
         }
         return false;

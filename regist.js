@@ -5,7 +5,10 @@ document.write('<script src="password.js"></script>');
 //调用外部js文件，用来生成随机验证码
 document.write('<script src="yzm.js"></script>');
 //设置一个全局变量，用来存储性别
+document.write('<script src="question-answer.js"></script>');
 var sex="";
+//设置一个全局变量，用来判断用户是否输入了合法的输入
+var count=0;
 $(document).ready(function(){
     /**设置密码框的最小长度以及最大长度 */
    $(":password").attr({
@@ -45,6 +48,14 @@ $(document).ready(function(){
         keyboard:false,//当按下esc按键时无效
         show:false,//当界面加载时，提醒框为隐藏状态。
     });
+    /**
+     * 设置提交提醒框的状态为加载时隐藏，并且在显示时按下esc键不消失。
+     */
+    $("#submitModal").modal({//提交提醒框加载设置。
+        keyboard:false,//当按下esc按键时无效
+        show:false,//当界面加载时，提醒框为隐藏状态。
+    });
+   
     //为通行证用户名创建一个提示工具
     $("#user").attr("data-toggle","popover");
     /**
@@ -109,6 +120,7 @@ $(document).ready(function(){
             $("#user-yes").show();//设置用户判断框中的yes为显示
             $("#user-no").hide();//设置用户判断框中的no为隐藏
             $("#user").popover("hide");//设置提示工具为隐藏状态
+            count++;
         }
     });
     /**
@@ -132,6 +144,7 @@ $(document).ready(function(){
             color();//调用外部判断密码强度的函数，该函数用来设置密码强度框中的等级颜色
             $("#pass").css({"border-color":"green"});//设置密码框的边框颜色为绿色
             $("#pass").popover("hide");//设置提示工具为隐藏状态
+            count++;
         }
     });
     /**
@@ -152,10 +165,8 @@ $(document).ready(function(){
             $("#rpass-ok-no").show();//设置重复密码的判断框为显示
             $("#rpass-yes").show();//设置重复密码的判断框的yes显示
             $("#rpass-no").hide();//设置重复密码的判断框的no为隐藏
+            count++;
         }
-    });
-    $("#ageNo").click(function(){
-        alert("???");
     });
 /**
  * 设置验证码点击更换图片
@@ -170,7 +181,17 @@ $(document).ready(function(){
     $("#refresh").click(function(){
         window.location.reload();
     });
-
+    $("#submit").click(function(){
+        if(count!=7){
+            $("#user").css({"border-color":"red"});
+            $("#pass").css({"border-color":"red"});
+            $("#rpass").css({"border-color":"red"});
+            $("#ques").css({"border-color":"red"});
+            $("#answ").css({"border-color":"red"});
+            
+            scroll(0,0);
+        }
+    });
 
 
 
