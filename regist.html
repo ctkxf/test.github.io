@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册界面</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-switch-3.3.4.css">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch-3.3.4.js"></script>
+    <style>
+        .star{
+            color: red;
+        }
+        ul.nav-tabs{
+        width: 140px;
+        margin-top: 20px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    }
+    ul.nav-tabs li{
+        margin: 0;
+        border-top: 1px solid #ddd;
+    }
+    ul.nav-tabs li:first-child{
+        border-top: none;
+    }
+    ul.nav-tabs li a{
+        margin: 0;
+        padding: 8px 16px;
+        border-radius: 0; 
+    }
+    ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+        color: #fff;
+        background: #0088cc;
+        border: 1px solid #0088cc;
+    }
+    ul.nav-tabs li:first-child a{
+        border-radius: 4px 4px 0 0;
+    }
+    ul.nav-tabs li:last-child a{
+        border-radius: 0 0 4px 4px;
+    }
+    ul.nav-tabs.affix{
+        top: 30px; /* Set the top position of pinned element */
+    }
+    </style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+    <div class="page-header" style="color:#fff;text-align:center;background-color:#0088cc;">
+        <h2>注册界面</h2>    
+    </div> 
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-2" id="myScrollspy">
+                <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+                    <li class="active"><a href="#One">选择您的用户名</a></li>
+                    <li><a href="#Two">请填写安全设置</a></li>
+                    <li><a href="#Three">基本个人信息</a></li>
+                </ul>
+        </div>
+        <div class="col-xs-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="One">请选择您的用户名</h3>
+                </div>
+                <table class="table">
+                    <tr>
+                        <td style="vertical-align:middle"><span><span class="star">*&nbsp</span>通行证用户名：</span></td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" name="username" id="user" class="form-control"
+                                placeholder="享受VIP优先服务保障">
+                                <span class="input-group-addon">@</span>
+                                <select name="email" id="email" class="form-control">
+                                    <option value="ymslx">ymsl.com</option>
+                                    <option value="wy">163.com</option>
+                                    <option value="win">outlook.com</option>
+                                </select>
+                                <span class="input-group-addon" id="user-ok-no"><span class="glyphicon glyphicon-ok " id="user-yes" style="color:green;display:none;"></span>
+                                    <span class="glyphicon glyphicon-remove " id="user-no" style="color:red;display:none;"></span>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                    
+
+                
+                
+                
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="Two">请填写安全设置</h3>
+                    <span>以下信息对保护你的账号安全极为重要，请您慎重填写并牢记</span>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td><span><span class="star">*&nbsp</span>登录密码：</span></td>
+                            <td  id="password">
+                                <div class="input-group">
+                                    <input type="password" name="password" id="pass" class="form-control"
+                                    placeholder="密码长度6~16位，字母区分大小写">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="input-group" style="width:200px">
+                                    <span id="ruo" class="input-group-addon">弱</span>
+                                    <span id="zhong" class="input-group-addon">中</span>
+                                    <span id="qiang" class="input-group-addon">强</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span><span class="star">*&nbsp</span>重复登录密码：</span></td>
+                            <td>
+                                <div class="input-group" style="width:235px;">
+                                    <input type="password" name="rpassword" style="width:196px;" id="rpass" class="form-control"
+                                    placeholder="请再次输入密码" >
+                                    <span class="input-group-addon" id="rpass-ok-no"><span class="glyphicon glyphicon-ok " id="rpass-yes" style="color:green;display:none;"></span>
+                                        <span class="glyphicon glyphicon-remove " id="rpass-no" style="color:red;display:none;"></span>
+                                    </span>
+                                </div>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span><span class="star">*&nbsp</span>密码保护问题：</span></td>
+                            <td>
+                                <div class="input-group">
+                                    <select name="question" id="ques" class="form-control">
+                                        <option value="choose">===请选择===</option>
+                                        <option value="Q2">问题2</option>
+                                        <option value="Q3">问题3</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span><span class="star">*&nbsp</span>你的答案：</span></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="answer" id="answ" class="form-control"
+                                    placeholder="请输入您的答案">
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td> <span><span class="star">*&nbsp</span>出生日期：</span></td>
+                            <td>
+                                <div class="input-group">
+                                    <select name="year" id="year" class="form-control">
+                                        <option value="choose">请选择</option>
+                                    </select>
+                                    <span class="input-group-addon">年</span>
+                                    <select name="month" id="month" class="form-control">
+                                        <option value="choose">请选择</option>
+                                    </select>
+                                    <span class="input-group-addon">月</span>
+                                    <select name="day" id="day" class="form-control">
+                                        <option value="choose">请选择</option>
+                                    </select>
+                                    <span class="input-group-addon">日</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span><span class="star">*&nbsp</span>性别：</span></td>
+                            <td>
+                                    <input id="sex" type="checkbox" checked="checked"
+                                    data-off-color="danger" data-on-color="info" data-on-text="男" data-off-text="女">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="Three">基本个人信息</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td><span>真实姓名：</span></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="rname" id="rname" class="form-control"
+                                    placeholder="请输入您的真实姓名">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>您的昵称：</span></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="name" id="name" class="form-control"
+                                    placeholder="请输入您的昵称，长度不超过20个字符">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>关联手机：</span></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="tele" id="tele" class="form-control"
+                                    placeholder="请输入您的关联手机号">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>保密邮箱：</span></td>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" name="mail" id="mail" class="form-control"
+                                    placeholder="请输入您的保密邮箱">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span><span class="star">*&nbsp</span>输入验证码：</span></td>
+                            <td> 
+                                <div class="input-group"> 
+                                    <input type="text" name="test" id="test" class="form-control"
+                                    placeholder="请输入右侧验证码">
+                                </div>
+                            </td>
+                            <td>
+                                <span id="yzm" 
+                                style="font-size:30px;font-family:华文琥珀;color:darkseagreen;
+                                background-color:black;">
+                                Q23W
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <button type="button" id="submit" class="btn btn-success">提交注册</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="button" id="refresh" class="btn btn-danger">重置页面</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div class="col-xs-2">
+                请注意：带有<span class="star">*&nbsp</span>的项目必须填写。
+        </div>
+    </div>
+    </div>  
+    
+    
+
+
+    <div class="modal fade" id="ageModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        提示信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    您不满18周岁，是否继续进行注册？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="ageNo">
+                        取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="regist.js"></script>
+</body>
+</html>
