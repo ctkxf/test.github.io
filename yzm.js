@@ -57,12 +57,12 @@
      * 设计一个函数，返回验证码输入是否正确
      */
     function yzmpd(){
-        if($("#test").text()==$("#yzm").text()){
+        if($("#test").val()==$("#yzm").val()){
             count++;
             return true;
         }
         return false;
     } 
-
+   
     exports.RandGeneratUtils = {random: random};
 })(this, jQuery);

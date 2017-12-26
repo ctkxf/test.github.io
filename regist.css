@@ -34,3 +34,10 @@ border-radius: 0 0 4px 4px;
 ul.nav-tabs.affix{
 top: 30px; /* Set the top position of pinned element */
 }
+.popover-content{
+    font-size:10px;
+    font-family: 楷体;
+}
+.popover{
+    background-color: rgba(255, 255, 255, 0.445);
+}

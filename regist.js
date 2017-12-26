@@ -6,15 +6,26 @@ document.write('<script src="password.js"></script>');
 document.write('<script src="yzm.js"></script>');
 //设置一个全局变量，用来存储性别
 document.write('<script src="question-answer.js"></script>');
+document.write('<script src="validator.js"></script>');
 var sex="";
 //设置一个全局变量，用来判断用户是否输入了合法的输入
 var count=0;
 $(document).ready(function(){
-    /**设置密码框的最小长度以及最大长度 */
-   $(":password").attr({
-       minlength:6,//设置最小长度为6
-       maxlength:18//设置最大长度为18
-   });
+   /**
+    * 编写一个函数，继承父类的方法。
+    * @param {*传递id或class或。。遵循JQuery} element 
+    */
+   function attrd(element){
+        this.element=element;
+        var choose=choosen(element);
+        attrs.call(this,this.element,choose); 
+   
+    }
+    (function(){
+        var Super=function(){};
+        Super.prototype=attrs.prototype;
+        attrd.prototype=new Super();
+    })();
 
 /**
  * 设置一个开关的样式用来选择性别，当开关为on状态时，显示男，开关为off状态时，显示女
@@ -98,79 +109,53 @@ $(document).ready(function(){
      * 使用keyup方法，在键盘弹起时进行判断
      */
     $("#user").keyup(function(){
-        var num=$("#user").val().length;//得到用户当前输入内容的长度
-        if(num<4){//判断长度是否在4以下
-            $("#user").css({"border-color":"red"});//设置输入框边框颜色为红色
-            $("#user").popover("show");//设置提示工具为显示状态
-            $("#user-ok-no").show();//设置用户判断框为显示状态
-            $("#user-yes").hide();//设置用户判断框中的yes为隐藏
-            $("#user-no").show();//设置用户判断框中的no为显示
-            $(".popover-content").text("您输入的用户名不足4位");//设置提示工具的内容  
-        }else if(num>18){//如果长度位18位以上，则超出输入长度
-            $("#user").css({"border-color":"red"});//设置输入框边框颜色为红色
-            $("#user").popover("show");//设置提示工具为显示状态
-            $("#user-ok-no").show();//设置用户判断框为显示状态
-            $("#user-yes").hide();//设置用户判断框中的yes为隐藏
-            $("#user-no").show();//设置用户判断框中的no为显示
-            $(".popover-content").text("您输入的用户名长度超过18位");//设置提示工具的内容 
-        }else{//如果不超出长度，则符合规范
-            $("#user").css({"border-color":"green"});//设置输入框边框颜色为绿色
-            $(".popover-content").text("该用户名可用");//设置提示工具的内容 
-            $("#user-ok-no").show();//设置用户判断框为显示状态
-            $("#user-yes").show();//设置用户判断框中的yes为显示
-            $("#user-no").hide();//设置用户判断框中的no为隐藏
-            $("#user").popover("hide");//设置提示工具为隐藏状态
-            count++;
-        }
+       var userAttr=new attrd("#user");
+       var res=userAttr.size(4,18,4,20);
+       if(res){
+        $("#user-ok-no").show();//设置用户判断框为显示状态
+        $("#user-yes").show();//设置用户判断框中的yes为显示
+        $("#user-no").hide();//设置用户判断框中的no为隐藏
+       }else{
+        $("#user-ok-no").show();//设置用户判断框为显示状态
+        $("#user-yes").hide();//设置用户判断框中的yes为隐藏
+        $("#user-no").show();//设置用户判断框中的no为显示
+       }
     });
     /**
      * 对用户填写密码进行实时判断
      * 使用keyup方法，在键盘弹起时进行判断
      */
     $("#pass").keyup(function(){
-        var num=$("#pass").val().length;//得到用户当前输入密码的长度
-        if(num<6){//判断长度是否在6位以下
-            clearColor();//调用外部判断密码强度的函数，该函数用来清除强弱等级的颜色
-            $("#pass").css({"border-color":"red"});//设置密码框的边框颜色为红色
-            $("#pass").popover("show");//设置提示工具为显示状态
-            $(".popover-content").text("您输入的密码不足6位");//设置提示工具的内容  
-           
-        }else if(num>16){//判断长度是否超出16位
-            clearColor();//调用外部判断密码强度的函数，该函数用来清除强弱等级的颜色
-            $("#pass").css({"border-color":"red"});//设置密码框的边框颜色为红色
-            $("#pass").popover("show");//设置提示工具为显示状态
-            $(".popover-content").text("您输入的密码长度超过16位");//设置提示工具的内容
-        }else{//长度符合规范
-            color();//调用外部判断密码强度的函数，该函数用来设置密码强度框中的等级颜色
-            $("#pass").css({"border-color":"green"});//设置密码框的边框颜色为绿色
-            $("#pass").popover("hide");//设置提示工具为隐藏状态
-            count++;
+        var passAttr=new attrd("#pass");
+        var res=passAttr.size(6,16,4,20);
+        if(res){
+            color();
+        }else{
+            clearColor(); 
         }
+       
     });
     /**
      * 对用户的重复密码进行实时判断
      * 使用keyup方法，在键盘弹起时进行判断
      */
     $("#rpass").keyup(function(){
-        if($("#rpass").val()!=$("#pass").val()){//判断两次输入的密码是否相同
-            $("#rpass").popover("show");//设置提示工具为显示状态
-            $(".popover-content").text("您两次输入的密码不同"); //设置提示工具显示内容 
-            $("#rpass").css({"border-color":"red"});//设置密码框边框颜色红色
-            $("#rpass-ok-no").show();//设置重复密码的判断框显示
-            $("#rpass-yes").hide();//设置重复密码的判断框中的yes隐藏
-            $("#rpass-no").show();//设置重复密码的判断框中的no显示
-        }else{//如果两次输入的密码相同
-            $("#rpass").css({"border-color":"green"});//设置密码框颜色为绿色
-            $("#rpass").popover("hide");//设置提示工具为隐藏状态
+        var rpassAttr=new attrd("#rpass");
+        rpassAttr.size(0,0,4,20);
+        var res=rpassAttr.same("#pass");
+        if(res){
             $("#rpass-ok-no").show();//设置重复密码的判断框为显示
             $("#rpass-yes").show();//设置重复密码的判断框的yes显示
             $("#rpass-no").hide();//设置重复密码的判断框的no为隐藏
-            count++;
+        }else{
+            $("#rpass-ok-no").show();//设置重复密码的判断框显示
+            $("#rpass-yes").hide();//设置重复密码的判断框中的yes隐藏
+            $("#rpass-no").show();//设置重复密码的判断框中的no显示
         }
     });
-/**
- * 设置验证码点击更换图片
- */
+    /**
+     * 设置验证码点击更换图片
+     */
     $("#yzm").click(function(){
         var res = RandGeneratUtils.random();
         $("#yzm").text(res);
@@ -181,17 +166,7 @@ $(document).ready(function(){
     $("#refresh").click(function(){
         window.location.reload();
     });
-    $("#submit").click(function(){
-        if(count!=7){
-            $("#user").css({"border-color":"red"});
-            $("#pass").css({"border-color":"red"});
-            $("#rpass").css({"border-color":"red"});
-            $("#ques").css({"border-color":"red"});
-            $("#answ").css({"border-color":"red"});
-            
-            scroll(0,0);
-        }
-    });
+ 
 
 
 
