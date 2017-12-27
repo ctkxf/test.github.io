@@ -11,22 +11,6 @@ var sex="";
 //设置一个全局变量，用来判断用户是否输入了合法的输入
 var count=0;
 $(document).ready(function(){
-   /**
-    * 编写一个函数，继承父类的方法。
-    * @param {*传递id或class或。。遵循JQuery} element 
-    */
-   function attrd(element){
-        this.element=element;
-        var choose=choosen(element);
-        attrs.call(this,this.element,choose); 
-   
-    }
-    (function(){
-        var Super=function(){};
-        Super.prototype=attrs.prototype;
-        attrd.prototype=new Super();
-    })();
-
 /**
  * 设置一个开关的样式用来选择性别，当开关为on状态时，显示男，开关为off状态时，显示女
  */
@@ -108,31 +92,20 @@ $(document).ready(function(){
      * 对用户填写用户名时进行实时判断
      * 使用keyup方法，在键盘弹起时进行判断
      */
+
+
     $("#user").keyup(function(){
-       var userAttr=new attrd("#user");
-       var res=userAttr.size(4,18,4,20);
-       if(res){
+        var res=rules("#user").leng(4,18);
         $("#user-ok-no").show();//设置用户判断框为显示状态
-        $("#user-yes").show();//设置用户判断框中的yes为显示
-        $("#user-no").hide();//设置用户判断框中的no为隐藏
-       }else{
-        $("#user-ok-no").show();//设置用户判断框为显示状态
-        $("#user-yes").hide();//设置用户判断框中的yes为隐藏
-        $("#user-no").show();//设置用户判断框中的no为显示
-       }
+        res?rules("#user-yes").truth("#user-yes"):rules("#user-yes").wrongth("#user-yes");
     });
     /**
      * 对用户填写密码进行实时判断
      * 使用keyup方法，在键盘弹起时进行判断
      */
     $("#pass").keyup(function(){
-        var passAttr=new attrd("#pass");
-        var res=passAttr.size(6,16,4,20);
-        if(res){
-            color();
-        }else{
-            clearColor(); 
-        }
+        var res=rules("#pass").leng(4,18);
+        res?color() : clearColor();
        
     });
     /**
@@ -140,19 +113,13 @@ $(document).ready(function(){
      * 使用keyup方法，在键盘弹起时进行判断
      */
     $("#rpass").keyup(function(){
-        var rpassAttr=new attrd("#rpass");
-        rpassAttr.size(0,0,4,20);
-        var res=rpassAttr.same("#pass");
-        if(res){
-            $("#rpass-ok-no").show();//设置重复密码的判断框为显示
-            $("#rpass-yes").show();//设置重复密码的判断框的yes显示
-            $("#rpass-no").hide();//设置重复密码的判断框的no为隐藏
-        }else{
-            $("#rpass-ok-no").show();//设置重复密码的判断框显示
-            $("#rpass-yes").hide();//设置重复密码的判断框中的yes隐藏
-            $("#rpass-no").show();//设置重复密码的判断框中的no显示
-        }
+        var res=rules("#rpass").same("#pass");
+        $("#rpass-ok-no").show();
+        res?rules("#rpass-no").truth("#rpass-no"):rules("#rpass-no").wrongth("#rpass-no");
     });
+    $("#test").keyup(function(){
+        var res=rules("#yzm").same("#test");
+    })
     /**
      * 设置验证码点击更换图片
      */

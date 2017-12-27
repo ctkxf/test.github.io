@@ -45,24 +45,6 @@
     function lowerCase(){
         //通过random随机生成0-1的数字后向上取整得到Unicode码后转换成字符
         return String.fromCharCode(Math.ceil(Math.random()*25+97));
-    }
-
-    /**
-     * 设置验证码的样式，伪装成一个图片
-     */
-    $("#yzm").css(
-    {"cursor":"pointer"}
-    );
-    /**
-     * 设计一个函数，返回验证码输入是否正确
-     */
-    function yzmpd(){
-        if($("#test").val()==$("#yzm").val()){
-            count++;
-            return true;
-        }
-        return false;
     } 
-   
     exports.RandGeneratUtils = {random: random};
 })(this, jQuery);

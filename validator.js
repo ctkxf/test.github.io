@@ -8,62 +8,59 @@ function choosen(element){
     }
 }
 
+function csses(sure,element){
+    $(element).css({
+        "border-color":(sure?"green":"red")
+    });
+    return sure;
+}
+var someArray={
+    "text":texts,
+    "password":texts,
+    "span":yzm
+}
 
-function attrs(element,choose){ 
-    
-    if(choose=="text"||choose=="password"){
-        this.size=function(minleng,maxleng,min,max){
-            var length=$(element).val().length;
-            $(element).attr({
-                minlength:min,
-                maxlength:max
-            });
-            if(length>=minleng&&length<=maxleng){
-                $(element).css({
-                    "border-color":"green"
-                });
-                return true;
-            }else{
-                $(element).css({
-                    "border-color":"red"
-                });
-                return false;
-            }
-        }
-        this.same=function(element2){
-            if($(element).val()==$(element2).val()){
-                $(element).css({
-                    "border-color":"green"
-                });
-                return true;
-            }else{
-                $(element).css({
-                    "border-color":"red"
-                });
-                return false;
-            }
-        }
-    }else{
-        if(choose=="span"){
-            this.same=function(element2){
-                if($(element).text()==$(element2).val()){
-                    $(element2).css({
-                        "border-color":"green"
-                    });
-                    return true;
-                }else{
-                    $(element2).css({
-                        "border-color":"red"
-                    });
-                    return false;
-                }
-            }
-        }else if(choose=="select"){
-            this.get=function(element){
-                
-            }
-        }
+function yzm(element){
+    this.truth=function(element){
+        $(element).removeClass("glyphicon glyphicon-remove");
+        $(element).addClass("glyphicon glyphicon-ok");
+        $(element).css({
+            "color":"green"
+        })
     }
+    this.wrongth=function(element){
+        $(element).removeClass("glyphicon glyphicon-ok");
+        $(element).addClass("glyphicon glyphicon-remove");
+        $(element).css({
+            "color":"red"
+        })
+    }
+    this.same=function(element2){
+        var sure=($(element).text()==$(element2).val());
+        csses(sure,element2);
+    }
+}
+function texts(element){
+    this.leng=function(min,max){
+        var length=$(element).val().length;
+        var sure=(length>=min&&length<=max);
+        return csses(sure,element);
+    }
+    this.same=function(element2){
+        var sure=($(element).val()==$(element2).val());
+        return csses(sure,element);
+    }
+}
+function selected(element){
+    this.get=function(){
+        return $(element).find("option:selected").text();
+    }
+    this.getNum=function(){
+        return parseInt($(element).find("option:selected").text());
+    }
+}
+function rules(eid){
+    return new someArray[choosen(eid)](eid);
 }
 
 

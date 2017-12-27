@@ -4,7 +4,7 @@
 
  //初始化年份
  $("#year").empty();//设置年份列表为空
- var option0=$("<option>").val("choose").text("==请选择==");//添加一个基础列表
+ var option0=$("<option>").val("choose").text("请选择");//添加一个基础列表
  $("#year").append(option0);//添加到年列表中
  for(var i=50;i<100;i++){//循环添加一些年份
      var options=$("<option>").val("y19"+i).text("19"+i+"年");//添加的年份为1950-1999
