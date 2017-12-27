@@ -39,11 +39,15 @@ top: 30px; /* Set the top position of pinned element */
     font-size:10px;
 }
 #yzm {
-    cursor: pointer
+    cursor: pointer;
+    font-size: 30px; 
+    font-family: 华文琥珀; 
+    color: darkseagreen;
+    background-color: black;
 }
 .form-horizontal{
     margin-top: 15px;
 }
 span{
-    text-align: left;
+    text-align: right;
 }
