@@ -37,7 +37,7 @@ function yzm(element){
     }
     this.same=function(element2){
         var sure=($(element).text()==$(element2).val());
-        csses(sure,element2);
+        return csses(sure,element2);
     }
 }
 function texts(element){

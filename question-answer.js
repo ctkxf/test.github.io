@@ -1,34 +1,25 @@
 
- $("#ques").attr("data-toggle","popover");
- $("#ques").popover({
-     html:true,//可以在提示工具中书写html代码。
-     placement:"auto right",//设置显示位置为上方。
-     content:"请选择一个密保问题" ,//设置初始时显示的内容。
-     trigger:"manual",//设置提示弹出方式为获得焦点。
-     container:"body"//设置提示显示依赖于body
- });
- $("#answ").attr("data-toggle","popover");
- $("#answ").popover({
-     html:true,//可以在提示工具中书写html代码。
-     placement:"auto right",//设置显示位置为上方。
-     content:"请输入密保问题答案" ,//设置初始时显示的内容。
-     trigger:"focus",//设置提示弹出方式为获得焦点。
-     container:"body"//设置提示显示依赖于body
- });
- $("#answ").focus(function(){
+$("#answ").keyup(function(){
      if($("#ques").find("option:selected").val()=="choose"){
         $("#ques").popover("show");
         $("#ques").css({"border-color":"red"});
-        
      }
+     var res=rules("#answ").leng(1,25);
+     count.set("#answ",res);
+     $("#sansw").text($("#answ").val());
 });
+
 $("#ques").click(function(){
+    var res=true;
     if($("#ques").find("option:selected").val()=="choose"){
         $("#ques").popover("show");
         $("#ques").css({"border-color":"red"});
+        res=false;
     }else{
         $("#ques").popover("hide");
         $("#ques").css({"border-color":"green"});
     }
+    $("#sques").text($("#ques").find("option:selected").text());
+    count.set("#ques",res);
 });
 

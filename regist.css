@@ -51,3 +51,10 @@ top: 30px; /* Set the top position of pinned element */
 span{
     text-align: right;
 }
+
+#date-time{
+    padding-left: 15px;
+}
+
+
+
