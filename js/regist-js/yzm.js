@@ -1,4 +1,4 @@
-(function(exports, $) {
+
     /**
      * 这是一个外部js文件，用来生成随机验证码
      */
@@ -46,5 +46,3 @@
         //通过random随机生成0-1的数字后向上取整得到Unicode码后转换成字符
         return String.fromCharCode(Math.ceil(Math.random()*25+97));
     } 
-    exports.RandGeneratUtils = {random: random};
-})(this, jQuery);
