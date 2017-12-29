@@ -2,7 +2,7 @@
 function popoverSetting(element,placements,contents,triggers){
     $(element).attr("data-toggle","popover");
     /**
-     * 初始化用户登录密码的提示工具
+     * 初始化提示工具
      */
     $(element).popover({
         html:true,//可以在提示工具中书写html代码。
